@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @post.body %>
+</p>
+
+<p>
+  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <%= link_to 'Back', posts_path %>
+</p>
+
+<p>
+  <b>Add a comment:</b>
+</p>
+
+<%= form_for [@post, Comment.new], :remote => true do |form| %>
+  <%= form.text_area :body %>
+
+  <br />
+
+  <%= form.submit %>
+
+  <div id="new-comment-error" style="display: none;">
+    <p>Please enter a comment.</p>
+  </div>
+<% end %>
+
+<h3>Comments</h3>
+
+<div id="comments">
+  <%= render :partial => 'comments/comment', :collection => @comments %>
+</div>
