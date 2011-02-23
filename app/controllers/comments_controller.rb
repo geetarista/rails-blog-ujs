@@ -43,6 +43,8 @@ class CommentsController < ApplicationController
   def create
     @post    = Post.find(params[:post_id])
     @comment = @post.comments.build(params[:comment])
+    # flash[:notice] = 'Comment was successfully created.' if @comment.save 
+    # respond_with @comment, :layout => !request.xhr?
 
     respond_to do |format|
       if @comment.save
